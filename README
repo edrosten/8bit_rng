@@ -1,0 +1,20 @@
+Simple random number generator based on the xorshift algorithm.
+
+http://en.wikipedia.org/wiki/Xorshift
+
+The RNG is 8 bit and suitable for very efficient implementation in assembly
+language on very small microcontrollers.
+
+The files are named after the period of the longest cycle.
+
+rng-4294967294 has an almost optimal cycle so no real care is required
+for seeding except avoiding all zeros, but it fails many of the die hard
+random number tests.
+
+rng-4261412736 has a 0.8% chance of falling into a poor quality short chain,
+a some degree of care is required to seed it. However, the quality of the 
+random numbers is excellent for such a small state (32 bits), and it passes
+almost all of the die hard tests.
+
+rng-4261412736.asm is an implementation in assembly which has been used on a
+PIC12F675 MCU, which lacks hardware multiply, divide and even barrel shift.
